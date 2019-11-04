@@ -21,6 +21,10 @@ public class User {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Customer[id=%d, name='%s']", id, name);
+    }
     public int getId() {
         return id;
     }

@@ -1,16 +1,39 @@
 package com.Feature.WSFeature;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 public class UserController {
+
     private AtomicInteger countr = new AtomicInteger();
-    @RequestMapping("/createUser")
-     public User createUser (@RequestParam(value = "name", defaultValue = "???") String name) {
-         return new User(countr.incrementAndGet(),name); //
+    private UserRepository userRepository;
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @ResponseBody
+    public User createUser (@RequestParam(value = "name") String name) {
+        return new User(countr.incrementAndGet(),name);
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @ResponseBody
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    @ResponseBody
+     public Optional<User> findById (@RequestParam(value = "id") int id) {
+        return userRepository.findById(id);
      }
+
+    @RequestMapping(value = "/users?name=x", method = RequestMethod.GET)
+    @ResponseBody
+    public List<User> findAllByName (@RequestParam(value = "name") String name) {
+        return userRepository.findAllByName(name);
+    }
+
+
 }
