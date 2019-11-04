@@ -1,10 +1,10 @@
-package com.Feature1.WSFeaure1;
+package com.Feature.WSFeaure;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WsFeaure1ApplicationTests {
+class WsFeaureApplicationTests {
 
 	@Test
 	void contextLoads() {

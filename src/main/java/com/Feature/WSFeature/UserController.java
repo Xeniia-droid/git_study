@@ -1,5 +1,6 @@
 package com.Feature.WSFeature;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +11,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class UserController {
 
     private AtomicInteger countr = new AtomicInteger();
+
+    @Autowired
     private UserRepository userRepository;
+
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     @ResponseBody
     public User createUser (@RequestParam(value = "name") String name) {
