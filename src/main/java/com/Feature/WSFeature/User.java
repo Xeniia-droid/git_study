@@ -1,14 +1,14 @@
-package com.Feature1.WSFeaure1;
+package com.Feature.WSFeature;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "User")
+
 public class User {
+
     @Id
     @GeneratedValue
     private int id;
@@ -21,7 +21,7 @@ public class User {
         this.name = name;
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 
@@ -29,7 +29,7 @@ public class User {
         return name;
     }
 
-    public void setID(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 

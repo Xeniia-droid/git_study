@@ -1,4 +1,4 @@
-package com.Feature1.WSFeaure1;
+package com.Feature.WSFeature;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
