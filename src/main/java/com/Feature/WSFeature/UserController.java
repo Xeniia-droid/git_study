@@ -15,27 +15,29 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @RequestMapping(path = "/users", method = RequestMethod.POST)
     @ResponseBody
-    public User createUser (@RequestParam(value = "name") String name) {
-        return new User(countr.incrementAndGet(),name);
+    public User createUser (@RequestParam String name) {
+        return userRepository.save(new User(countr.incrementAndGet(),name));
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(path = "/users/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> findAll() {
+    public Iterable<User> findAll() {
         return userRepository.findAll();
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/users/byId", method = RequestMethod.GET)
     @ResponseBody
-     public Optional<User> findById (@RequestParam(value = "id") int id) {
+     public Optional<User> findById (@RequestParam int id) {
         return userRepository.findById(id);
+      //  System.out.println("Im here");
+      //  return "it works";
      }
 
-    @RequestMapping(value = "/users?name=x", method = RequestMethod.GET)
+    @RequestMapping(path = "/users/AllByName", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> findAllByName (@RequestParam(value = "name") String name) {
+    public List<User> findAllByName (@RequestParam String name) {
         return userRepository.findAllByName(name);
     }
 

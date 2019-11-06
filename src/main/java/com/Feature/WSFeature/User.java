@@ -16,6 +16,10 @@ public class User {
     @NotBlank
     private  String name;
 
+    public User(){
+
+    }
+
     public User(int id, @NotBlank String name) {
         this.id = id;
         this.name = name;
