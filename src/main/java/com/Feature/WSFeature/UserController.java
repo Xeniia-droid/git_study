@@ -20,7 +20,7 @@ public class UserController {
     @ResponseBody
     public User createUser (@RequestBody User user) {
         String name = user.getName();
-        return userRepository.save(new User(countr.incrementAndGet(),name));
+        return userRepository.save(new User(name));
     }
     @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
     @ResponseBody
