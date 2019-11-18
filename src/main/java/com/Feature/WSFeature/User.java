@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-
 public class User {
 
     @Id
@@ -16,9 +15,7 @@ public class User {
     @NotBlank
     private  String name;
 
-    public User(){
-
-    }
+    public User(){}
 
     public User(int id, @NotBlank String name) {
         this.id = id;
@@ -26,7 +23,6 @@ public class User {
     }
 
     public User( @NotBlank String name) {
-        //this.id = id;
         this.name = name;
     }
 

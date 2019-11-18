@@ -4,41 +4,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 public class UserController {
 
-    private AtomicInteger countr = new AtomicInteger();
-
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(path = "/users", method = RequestMethod.POST)
+    @PostMapping(path = "/users")
     @ResponseBody
     public User createUser (@RequestBody User user) {
-        String name = user.getName();
-        return userRepository.save(new User(name));
+        return userRepository.save(user);
     }
-    @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
+    @GetMapping(path = "/users/{id}")
     @ResponseBody
     public Optional<User> findById (@RequestParam String id) {
         return userRepository.findById(Integer.parseInt(id));
     }
 
-    @RequestMapping(path = "/users", method = RequestMethod.GET)
+    @GetMapping(path = "/users")
     @ResponseBody
     public Iterable<User> findAll() {
         return userRepository.findAll();
     }
 
-    @RequestMapping(path = "/users/name=x", method = RequestMethod.GET)
+    @GetMapping(path = "/users/name")
     @ResponseBody
-    public Iterable<User> findAllByName (@RequestParam String name) {
+    public List<User> findAllByName (@RequestParam String name) {
         return userRepository.findAllByName(name);
     }
-
-
 }

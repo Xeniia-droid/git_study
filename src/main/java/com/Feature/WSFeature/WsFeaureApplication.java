@@ -16,27 +16,4 @@ public class WsFeaureApplication {
 		SpringApplication.run(WsFeaureApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner demo(UserRepository repository) {
-		return (args) -> {
-			repository.save(new User("Bauer"));
-			repository.save(new User("O'Brian"));
-			repository.save(new User("Bauer"));
-			log.info("Customer found with findByLastName('Bauer'):");
-			log.info("--------------------------------------------");
-			repository.findAllByName("Bauer").forEach(bauer -> {
-				log.info(bauer.toString());
-			});
-			// for (Customer bauer : repository.findByLastName("Bauer")) {
-			// 	log.info(bauer.toString());
-			// }
-			log.info("");
-		};
-	}
-
-
-
-
-
-
 }
