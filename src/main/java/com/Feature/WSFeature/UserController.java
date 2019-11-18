@@ -2,7 +2,7 @@ package com.Feature.WSFeature;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,10 +17,11 @@ public class UserController {
     public User createUser (@RequestBody User user) {
         return userRepository.save(user);
     }
+
     @GetMapping(path = "/users/{id}")
     @ResponseBody
-    public Optional<User> findById (@RequestParam String id) {
-        return userRepository.findById(Integer.parseInt(id));
+    public Optional<?> findById (@RequestParam int id) throws IOException {
+        return userRepository.findById(id);
     }
 
     @GetMapping(path = "/users")
