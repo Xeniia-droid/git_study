@@ -21,7 +21,6 @@ public class UserController {
 
     @GetMapping(path = "/users/{id}")
     @ResponseBody
-    @ResponseStatus(HttpStatus.FORBIDDEN)
     public Optional<User> findById (@RequestParam int id) throws IOException {
         Optional<User> users = userRepository.findById(id);
         if (users.equals(Optional.empty())) { //I'm not sure if this is the right comparison
