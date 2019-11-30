@@ -1,11 +1,12 @@
 package com.Feature.WSFeature;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import java.io.IOException;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class UserController {
@@ -21,25 +22,27 @@ public class UserController {
 
     @GetMapping(path = "/users/{id}")
     @ResponseBody
-    public Optional<User> findById (@RequestParam int id) throws IOException {
+    public User findUserById (@PathVariable int id)  {
         Optional<User> users = userRepository.findById(id);
-        if (users.equals(Optional.empty())) { //I'm not sure if this is the right comparison
-           throw new NotFoundException();
-        }
-        else {
-            return users;}
+            return users.orElseThrow(()-> new NotFoundException());
 
     }
 
     @GetMapping(path = "/users")
     @ResponseBody
-    public Iterable<User> findAll() {
-        return userRepository.findAll();
+    public List<User> findAllUser(@RequestParam(value = "name", required = false) String name) {
+
+            if (name==null)
+                return userRepository.findAll();
+
+            else
+                return userRepository.findAllByName(name);
+
     }
 
-    @GetMapping(path = "/users/name")
+    /*@GetMapping(path = "/users/name")
     @ResponseBody
     public List<User> findAllByName (@RequestParam String name) {
         return userRepository.findAllByName(name);
-    }
+    }*/
 }
